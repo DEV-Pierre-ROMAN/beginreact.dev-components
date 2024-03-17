@@ -1,29 +1,36 @@
-import clsx from 'clsx';
+import styled from 'styled-components';
 
-const Button = ({ variant, size, children }) => {
-  return (
-    <button
-      className={clsx(
-        'rounded border-0',
-        {
-          'bg-[#646cff]': variant === 'primary',
-          'bg-green-600': variant === 'secondary',
-          'bg-neutral-900': variant == 'default',
-        },
-        {
-          'py-2 px-4 text-base': size === 'small',
-          'py-3 px-6 text-lg': size === 'large',
-        }
-      )}
-    >
-      {children}
-    </button>
-  );
-};
+const Button = styled.button(
+  {
+    border: 0,
+    borderRadius: 4,
+  },
+  {
+    backgroundColor: ({ variant }) => {
+      if (variant === 'primary') {
+        return '#646cff';
+      } else if (variant === 'secondary') {
+        return '#16a34a';
+      } else {
+        return '#171717';
+      }
+    },
+    color: 'white',
+    padding: ({ size }) => (size === 'small' ? '8px 12px' : '16px 20px'),
+    fontSize: ({ size }) => (size === 'small' ? '1rem' : '1.2rem'),
+  }
+);
 
 const Demo = () => {
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.75rem',
+      }}
+    >
       <Button variant="primary" size="small">
         Primary small
       </Button>
