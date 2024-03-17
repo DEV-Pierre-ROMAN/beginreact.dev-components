@@ -1,6 +1,10 @@
 // 🦁 Les styles par défaut pour touts les variants sont :
 // - border: 0
 // - borderRadius: 4
+const ButtonDefaultStyle = {
+  border: 0,
+  borderRadius: 4,
+};
 
 // 🦁 Il y a 3 variants : `primary`, `secondary` et `default`
 // Crée un objet ici qui contient les styles pour chaque variant
@@ -8,11 +12,32 @@
 // - primary : le background est #646cff
 // - secondary : le background est #16a34a
 // - default : le background est #171717
+const VariantsStyle = {
+  primary: {
+    backgroundColor: '#646cff',
+  },
+  secondary: {
+    backgroundColor: '#16a34a',
+  },
+  default: {
+    backgroundColor: '#171717',
+  },
+};
 
 // 🦁 Il y a deux size : `small` et `large`
 // Fais la même chose que pour les variants (en utilisant SizesStyle)
 // - small : le padding est 8px 16px et le fontSize est 1rem
 // - large : le padding est 12px 24px et le fontSize est 1.2rem
+const SizesStyle = {
+  small: {
+    padding: '8px 16px',
+    fontSize: '1rem',
+  },
+  large: {
+    padding: '12px 24px',
+    fontSize: '1.2rem',
+  },
+};
 
 // 💡 `backgroundColor: 'red'` -> On utilise `backgroundColor` et pas `background-color`
 // car on est dans du JavaScript et pas dans du CSS.
@@ -20,19 +45,34 @@
 const Button = ({ variant, size, children }) => {
   // 🦁 Utiliser les objets VariantsStyle et SizesStyle pour appliquer les styles
   // 💡 variantStyle = VariantsStyle[variant];
+  const variantStyle = VariantsStyle[variant]
+    ? VariantsStyle[variant]
+    : VariantsStyle.default;
+  const sizesStyle = SizesStyle[size] ? SizesStyle[size] : SizesStyle.small;
 
   // 🦁 Ajouter l'objet `style` sur le bouton
   // 💡 style={{ ... }}
   // 💡 Tu pourras utiliser `variantStyle` et `sizeStyle` pour appliquer les styles
   //    En utilisant le spread operator : { ...variantStyle, ...sizeStyle }
-  return <button>{children}</button>;
+  return (
+    <button style={{ ...ButtonDefaultStyle, ...variantStyle, ...sizesStyle }}>
+      {children}
+    </button>
+  );
 };
 
 const Demo = () => {
   return (
     // 🦁 Ajouter des styles pour que les boutons soit alignés au centre avec
     // display: flex et flexDirection: column ainsi que alignItems: center
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.75rem',
+      }}
+    >
       <Button variant="primary" size="small">
         Primary small
       </Button>
