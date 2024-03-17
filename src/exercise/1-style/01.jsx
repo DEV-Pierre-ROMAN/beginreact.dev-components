@@ -6,13 +6,13 @@ const Button = ({ variant, size, children }) => {
       className={clsx(
         'rounded border-0',
         {
-          ['bg-[#646cff]']: variant == 'primary',
-          ['bg-green-600']: variant == 'secondary',
-          ['bg-neutral-900']: variant == 'default',
+          'bg-[#646cff]': variant === 'primary',
+          'bg-green-600': variant === 'secondary',
+          'bg-neutral-900': variant == 'default',
         },
         {
-          ['py-2 px-4 text-base']: size == 'small',
-          ['py-3 px-6 text-lg']: size == 'large',
+          'py-2 px-4 text-base': size === 'small',
+          'py-3 px-6 text-lg': size === 'large',
         }
       )}
     >
