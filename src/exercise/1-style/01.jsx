@@ -1,42 +1,20 @@
-import styles from './01.module.css';
-
-const VariantsStyle = {
-  primary: {
-    backgroundColor: '#646cff',
-  },
-  secondary: {
-    backgroundColor: '#16a34a',
-  },
-  default: {
-    backgroundColor: '#171717',
-  },
-};
-
-const SizesStyle = {
-  small: {
-    padding: '8px 16px',
-    fontSize: '1rem',
-  },
-  large: {
-    padding: '12px 24px',
-    fontSize: '1.2rem',
-  },
-};
+import clsx from 'clsx';
 
 const Button = ({ variant, size, children }) => {
-  const variantStyle = VariantsStyle[variant]
-    ? VariantsStyle[variant]
-    : VariantsStyle.default;
-  const sizesStyle = SizesStyle[size] ? SizesStyle[size] : SizesStyle.small;
-
   return (
     <button
-      className={styles.button}
-      style={{
-        ['--background-color']: variantStyle.backgroundColor,
-        ['--padding']: sizesStyle.padding,
-        ['--font-size']: sizesStyle.fontSize,
-      }}
+      className={clsx(
+        'rounded border-0',
+        {
+          ['bg-[#646cff]']: variant == 'primary',
+          ['bg-green-600']: variant == 'secondary',
+          ['bg-neutral-900']: variant == 'default',
+        },
+        {
+          ['py-2 px-4 text-base']: size == 'small',
+          ['py-3 px-6 text-lg']: size == 'large',
+        }
+      )}
     >
       {children}
     </button>
@@ -45,7 +23,7 @@ const Button = ({ variant, size, children }) => {
 
 const Demo = () => {
   return (
-    <div className={styles.container}>
+    <div className="flex flex-col items-center gap-3">
       <Button variant="primary" size="small">
         Primary small
       </Button>
