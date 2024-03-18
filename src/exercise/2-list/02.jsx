@@ -18,7 +18,9 @@ const ShoppingItem = ({ name, quantity, checked }) => {
     quantity > 0 && (
       <div className={styles['shopping-item']}>
         <div className={styles.section}>
-          <p style={name.length <= 2 ? { color: 'red' } : {}}>{name}</p>
+          <p style={name.length <= 2 ? { color: 'red' } : { color: 'green' }}>
+            {name}
+          </p>
           {quantity > 1 && <p className={styles.badge}>{quantity}</p>}
         </div>
         <div className={styles.section}>
