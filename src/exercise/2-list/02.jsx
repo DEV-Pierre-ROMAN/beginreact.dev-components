@@ -15,15 +15,17 @@ const ShoppingListData = [
 
 const ShoppingItem = ({ name, quantity, checked }) => {
   return (
-    <div className={styles['shopping-item']}>
-      <div className={styles.section}>
-        <p>{name}</p>
-        <p className={styles.badge}>{quantity}</p>
+    quantity > 0 && (
+      <div className={styles['shopping-item']}>
+        <div className={styles.section}>
+          <p style={name.length <= 2 ? { color: 'red' } : {}}>{name}</p>
+          {quantity > 1 && <p className={styles.badge}>{quantity}</p>}
+        </div>
+        <div className={styles.section}>
+          <input type="checkbox" defaultChecked={checked} />
+        </div>
       </div>
-      <div className={styles.section}>
-        <input type="checkbox" defaultChecked={checked} />
-      </div>
-    </div>
+    )
   );
 };
 
