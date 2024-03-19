@@ -1,7 +1,11 @@
+import { useRef } from 'react';
+
 const UserForm = ({ onSubmitUser }) => {
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
   const _handleSubmit = (event) => {
-    const name = event.currentTarget.elements.name.value;
-    const password = event.currentTarget.elements.password.value;
+    const name = usernameRef.current.value;
+    const password = passwordRef.current.value;
 
     onSubmitUser({ name, password });
     event.preventDefault();
@@ -9,13 +13,13 @@ const UserForm = ({ onSubmitUser }) => {
 
   return (
     <form className="vertical-stack form" onSubmit={_handleSubmit}>
-      <label>
+      <label htmlFor="name">
         Name
-        <input type="text" name="name" />
+        <input ref={usernameRef} type="text" name="name" />
       </label>
-      <label>
+      <label htmlFor="password">
         Password
-        <input type="password" name="password" />
+        <input ref={passwordRef} type="password" name="password" />
       </label>
       <input type="submit" value="Submit" />
     </form>
