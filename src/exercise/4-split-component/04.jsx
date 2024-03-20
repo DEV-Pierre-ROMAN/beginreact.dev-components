@@ -48,12 +48,16 @@ const Header = ({ title, subtitle }) => {
   );
 };
 
+const Badge = ({ children }) => {
+  return <p className={styles.badge}>{children}</p>;
+};
+
 const ShoppingItem = ({ name, quantity }) => {
   return (
     <div className={clsx(styles['shopping-item'], styles['bg-paper'])}>
       <div className={styles.section}>
         <p>{name}</p>
-        <p className={styles.badge}>{quantity}</p>
+        <Badge>{quantity}</Badge>
       </div>
       <div className={styles.section}>
         <input type="checkbox" />
@@ -82,7 +86,7 @@ const RecipeItem = ({ name, date }) => {
   return (
     <li className={clsx(styles['flex'], styles['gap-4'])}>
       <span>{name}</span>
-      <p className={styles.badge}>{date}</p>
+      <Badge>{date}</Badge>
     </li>
   );
 };
